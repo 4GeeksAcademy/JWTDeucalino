@@ -20,7 +20,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
-
+		
 			getMessage: async () => {
 				try{
 					// fetching data from the backend
@@ -33,6 +33,24 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error)
 				}
 			},
+			signUp: (username, name, email, password) => {
+				var options = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ username: username, name: name, email: email, password: password })
+				}
+				fetch(process.env.BACKEND_URL + '/api/registration', options)
+				.then(response => {
+					if (response.ok) return response.json()
+					else throw Error('Something went wrong')
+				})
+				.then(data => {
+					console.log(data)
+				})
+				.catch(error => {
+					console.log(error)
+				})
+		}	,
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
@@ -46,9 +64,9 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
-			}
-		}
-	};
+			}		
+	}
 };
+}
 
 export default getState;

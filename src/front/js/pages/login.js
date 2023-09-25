@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 export const Login = () => {
  
@@ -29,9 +30,6 @@ export const Login = () => {
         <div className="text-center">
         <button type="submit" className="btn btn-primary">Log in</button>
         </div>
-        <Link to="/resset">
-          <p className="text-light">Forgot your username or password?</p>
-       </Link>
          <p className="text-danger">
          Guess what? You're in the 'Not Registered' club! Time for a wild
           adventure—off to the registration form you go!

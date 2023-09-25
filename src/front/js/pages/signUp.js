@@ -1,5 +1,5 @@
 import React,{useState,useContext} from "react";
-import "../../styles/registration.css";
+
 import { Context } from "../store/appContext";
 export const Registration=()=>{
   const[userName,setUserName]=useState();
