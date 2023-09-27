@@ -16,7 +16,6 @@ export const Registration=()=>{
     return(
         <form className="text-center" onSubmit={handleSubmit}>
         <h1 className="text-light">The So-Bad-It's-Good Movie Registration Form</h1> 
-       <h3 className= "text-warning">Rate, Review and Comment a Cinematic Catastrophe with Pride!</h3>
        <div  className="superFormWrappa2">
        <div className=" formWrappa2 mb-3">
        <div className="mb-3">

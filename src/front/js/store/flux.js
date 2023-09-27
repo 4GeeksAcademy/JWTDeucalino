@@ -33,6 +33,30 @@ const getState = ({ getStore, getActions, setStore }) => {
 					console.log("Error loading message from backend", error)
 				}
 			},
+			verifyIfUserLoggedIn:()=>{
+				const token=localStorage.getItem('token')
+				if (token) setStore({token:data.token});
+			},
+			logIn: (email, password) => {
+				var options = {
+					method: "POST",
+					headers: { "Content-Type": "application/json" },
+					body: JSON.stringify({ email: email, password: password })
+				}
+				fetch(process.env.BACKEND_URL + '/api/login', options)
+				.then(response => {
+					if (response.ok) return response.json()
+					else throw Error('Something went wrong')
+				})
+				.then(data => {
+					localStorage.setItem("token", data.token)
+					setStore({token:data.token})
+					console.log(data)
+				})
+				.catch(error => {
+					console.log(error)
+				})
+			},
 			signUp: (username, name, email, password) => {
 				var options = {
 					method: "POST",

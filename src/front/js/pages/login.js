@@ -1,17 +1,24 @@
-import React from "react";
+import React,{useNavigate} from "react";
 import { Link } from "react-router-dom";
 
 export const Login = () => {
- 
+  const navigate = useNavigate();
+
   const handleSubmit = (e) => {
+   
     e.preventDefault();
     console.log(email);  
     actions.logIn(email, password);
+    const token=sessionStorage.setItem('token'); // Save the token in sessionStorage
+    if (!token) {
+      navigate('/login'); // Use navigate to redirect to the login page if token is not present
+    
+    navigate ('/private'); // Redirect to the private route
   };
-
+ 
 	return (
         <form className="text-center"onSubmit={handleSubmit}>
-        <h1 className="text-light">Wellcome  to Your Best Worst Movie Log in.</h1>
+        <h1 className="text-light">Login.</h1>
         <div className="superFormWrappa ">
         <div className="formWrappal ">
         <div className="mb-3">
@@ -35,7 +42,7 @@ export const Login = () => {
           adventure—off to the registration form you go!
         </p>
         <div className="text-center">
-       <Link to="/registration">
+       <Link to="/signUp">
        <button type="submit" className="btn btn-primary">Sign up.</button>
        </Link>
         </div>
@@ -45,4 +52,4 @@ export const Login = () => {
        
          );
     };
-	
+}
