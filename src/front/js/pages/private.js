@@ -1,6 +1,16 @@
-import React from "react";
-
+import React,{useEffect,useContext} from "react";
+import {useNavigate} from "react-router-dom";
 export const Private = () => {
+  const navigate = useNavigate();
+  const { store, actions } = useContext(Context);
+  useEffect(()=>{
+    if(store.token){
+      console.log("Go ahead.")
+    }
+    else {
+      navigate('/login')
+    }
+  },[])
 	return (
         <div class="container-fluid">
           <div class="card">

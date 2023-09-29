@@ -1,8 +1,11 @@
-import React,{useNavigate} from "react";
+import React,{useState,useContext} from "react";
+import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 
 export const Login = () => {
-  const navigate = useNavigate();
+  const[email,setEmail]=useState();
+  const[password, setPassword]=useState();
+  const { store, actions } = useContext(Context);
 
   const handleSubmit = (e) => {
    
@@ -10,12 +13,7 @@ export const Login = () => {
     console.log(email);  
     actions.logIn(email, password);
     const token=sessionStorage.setItem('token'); // Save the token in sessionStorage
-    if (!token) {
-      navigate('/login'); // Use navigate to redirect to the login page if token is not present
-    
-    navigate ('/private'); // Redirect to the private route
-  };
- 
+   
 	return (
         <form className="text-center"onSubmit={handleSubmit}>
         <h1 className="text-light">Login.</h1>
@@ -47,9 +45,10 @@ export const Login = () => {
        </Link>
         </div>
        </div>
+       {store.token? <Link to="/private"></Link>: ""}
         </div>
         </form>      
-       
+      
          );
     };
 }
