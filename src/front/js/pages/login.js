@@ -12,7 +12,7 @@ export const Login = () => {
     e.preventDefault();
     console.log(email);  
     actions.logIn(email, password);
-    const token=sessionStorage.setItem('token'); // Save the token in sessionStorage
+  }
    
 	return (
         <form className="text-center"onSubmit={handleSubmit}>
@@ -45,10 +45,8 @@ export const Login = () => {
        </Link>
         </div>
        </div>
-       {store.token? <Link to="/private"></Link>: ""}
+       {store.token? <Link to="/private">To private</Link>: ""}
         </div>
         </form>      
-      
          );
     };
-}

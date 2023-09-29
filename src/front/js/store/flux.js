@@ -37,7 +37,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			},
 			verifyIfUserLoggedIn:()=>{
 				const token=localStorage.getItem('token')
-				if (token) setStore({token:data.token});
+				if (token) setStore({token:token});
 			},
 			logIn: (email, password) => {
 				var options = {
@@ -45,7 +45,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({ email: email, password: password })
 				}
-				fetch(process.env.BACKEND_URL + '/api/login', options)
+				fetch(process.env.BACKEND_URL + 'api/login', options)
 				.then(response => {
 					if (response.ok) return response.json()
 					else throw Error('Something went wrong')
@@ -65,7 +65,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 					headers: { "Content-Type": "application/json" },
 					body: JSON.stringify({ username: username, name: name, email: email, password: password })
 				}
-				fetch(process.env.BACKEND_URL + '/api/registration', options)
+				fetch(process.env.BACKEND_URL + 'api/registration', options)
 				.then(response => {
 					if (response.ok) return response.json()
 					else throw Error('Something went wrong')

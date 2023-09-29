@@ -1,5 +1,6 @@
 import React,{useEffect,useContext} from "react";
 import {useNavigate} from "react-router-dom";
+import { Context } from "../store/appContext";
 export const Private = () => {
   const navigate = useNavigate();
   const { store, actions } = useContext(Context);
